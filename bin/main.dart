@@ -1,3 +1,5 @@
+import 'package:test/test.dart';
+
 // Write a test case which checks the board size is 3 by 3 and is empty
 
 // Challenge 1
@@ -10,7 +12,12 @@ import 'dart:io';
 void main() {
   List<List<String>> board = createBoard();
   printBoard(board);
+
+  List XChoice = [];
+  List OChoice = [];
+
   String currentPlayer = 'X';
+
 
   while (true) {
     print('$currentPlayer\'s move');
@@ -24,9 +31,54 @@ void main() {
     board[row][column] = currentPlayer;
     printBoard(board);
     if (currentPlayer == 'X') {
+      XChoice.add(userChoice);
+      print(XChoice);
+      if(XChoice.contains("A1") && XChoice.contains("A2") && XChoice.contains("A3")){
+        print("X won");
+        break;
+      }
+      else if(XChoice.contains("B1") && XChoice.contains("B2") && XChoice.contains("B3")){
+        print("X won");
+        break;
+      }
+      else if(XChoice.contains("C1") && XChoice.contains("C2") && XChoice.contains("C3")){
+        print("X won");
+        break;
+      }
+      else if(XChoice.contains("A1") && XChoice.contains("B2") && XChoice.contains("C3")){
+        print("X won");
+        break;
+      }
+      else if(XChoice.contains("C1") && XChoice.contains("B2") && XChoice.contains("A3")){
+        print("X won");
+        break;
+      }
       currentPlayer = 'O';
     } else {
+      OChoice.add(userChoice);
+      if(OChoice.contains("A1") && OChoice.contains("A2") && OChoice.contains("A3")){
+        print("O won");
+        break;
+      }
+      else if(OChoice.contains("B1") && OChoice.contains("B2") && OChoice.contains("B3")){
+        print("O won");
+        break;
+      }
+      else if(OChoice.contains("C1") && OChoice.contains("C2") && OChoice.contains("C3")){
+        print("O won");
+        break;
+      }
+      else if(OChoice.contains("A1") && OChoice.contains("B2") && OChoice.contains("C3")){
+        print("O won");
+        break;
+      }
+      else if(OChoice.contains("C1") && OChoice.contains("B2") && OChoice.contains("A3")){
+        print("O won");
+        break;
+      }
       currentPlayer = 'X';
+      print(OChoice);
+
     }
   }
 }
