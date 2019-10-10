@@ -1,5 +1,3 @@
-import 'package:test/test.dart';
-
 // Write a test case which checks the board size is 3 by 3 and is empty
 
 // Challenge 1
@@ -19,7 +17,12 @@ void main() {
   String currentPlayer = 'X';
 
 
-  while (true) {
+  checkWinner(currentPlayer, board, XChoice, OChoice);
+}
+
+bool checkWinner(String currentPlayer, List<List<String>> board, List XChoice, List OChoice) {
+  int rightAttempts = 0;
+  while (rightAttempts < 9) {
     print('$currentPlayer\'s move');
     String userChoice = stdin.readLineSync();
     int row = getRow(userChoice);
@@ -32,54 +35,64 @@ void main() {
     printBoard(board);
     if (currentPlayer == 'X') {
       XChoice.add(userChoice);
-      print(XChoice);
+      rightAttempts++;
+      //print(XChoice);
+      print(rightAttempts);
       if(XChoice.contains("A1") && XChoice.contains("A2") && XChoice.contains("A3")){
         print("X won");
-        break;
+        return true;
       }
       else if(XChoice.contains("B1") && XChoice.contains("B2") && XChoice.contains("B3")){
         print("X won");
-        break;
+        return true;
       }
       else if(XChoice.contains("C1") && XChoice.contains("C2") && XChoice.contains("C3")){
         print("X won");
-        break;
+        return true;
       }
       else if(XChoice.contains("A1") && XChoice.contains("B2") && XChoice.contains("C3")){
         print("X won");
-        break;
+        return true;
       }
       else if(XChoice.contains("C1") && XChoice.contains("B2") && XChoice.contains("A3")){
         print("X won");
-        break;
+        return true;
       }
       currentPlayer = 'O';
-    } else {
+    } else if (currentPlayer == "O"){
       OChoice.add(userChoice);
+      rightAttempts++;
       if(OChoice.contains("A1") && OChoice.contains("A2") && OChoice.contains("A3")){
         print("O won");
-        break;
+        return true;
       }
       else if(OChoice.contains("B1") && OChoice.contains("B2") && OChoice.contains("B3")){
         print("O won");
-        break;
+        return true;
       }
       else if(OChoice.contains("C1") && OChoice.contains("C2") && OChoice.contains("C3")){
         print("O won");
-        break;
+        return true;
       }
       else if(OChoice.contains("A1") && OChoice.contains("B2") && OChoice.contains("C3")){
         print("O won");
-        break;
+        return true;
       }
       else if(OChoice.contains("C1") && OChoice.contains("B2") && OChoice.contains("A3")){
         print("O won");
-        break;
+        return true;
       }
+
       currentPlayer = 'X';
       print(OChoice);
 
     }
+
+    else{
+      return false;
+    }
+
+
   }
 }
 
